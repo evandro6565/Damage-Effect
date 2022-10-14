@@ -1,0 +1,9 @@
+{
+  "name": "damage_effect",
+  "version": "0.1.6",
+  "title": "Damage Effect (DEMO)",
+  "author": "evandro_6565",
+  "description": "Adds damage effects",
+  "dependencies": ["!Building_Time_With_Setting", "flib >= 0.11.2"],
+  "factorio_version": "1.1"
+}

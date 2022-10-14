@@ -1,0 +1,26 @@
+---------------------------------------------------------------------------------------------------
+Version: 0.1.3
+date: 2022.10.04
+  Chenges:
+    - code to change rokect silo to damaged
+  Features:
+    - Added boiler-damaged graphics
+  Bugfixes:
+    - Fixed bug, entity ghost (blueprint).
+---------------------------------------------------------------------------------------------------
+Version: 0.1.4
+date: 2022.10.04
+  Bugfixes:
+    - Fixed bug using repair entity tool
+---------------------------------------------------------------------------------------------------
+Version: 0.1.5
+date: 2022.10.06
+  Compatibility:
+    - incompatibility with (Build time with configuration)
+  Bugfixes:
+    - fixed bug blueprint ghost tool causing game slowdown
+---------------------------------------------------------------------------------------------------
+Version: 0.1.6
+date: 2022.10.14
+  optimization:
+    - reducing number of entities in the registr
