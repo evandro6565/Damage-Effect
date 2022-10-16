@@ -158,6 +158,19 @@ function health_currenc_period(e, v)
 	end
 end 
 
+function r_corpse(corpses, name)
+	local name = split(name, "-damaged")[1] or name
+	local corpse = nil
+
+	corpse = corpse or corpses["1x2-remnants"] and corpses["1x2-remnants"].name
+	corpse = corpse or corpses["small-remnants"] and corpses["small-remnants"].name
+	corpse = corpse or corpses["medium-remnants"] and corpses[name.."-remnants"].name
+	corpse = corpse or corpses["big-remnants"] and corpses["big-remnants"].name
+	corpse = corpses[name.."-remnants"] and corpses[name.."-remnants"].name
+
+	return corpse
+end
+
 _update_ = false
 function update()
 	if game and not _update_ then

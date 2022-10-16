@@ -134,6 +134,7 @@ function register_entity(entity, on_entity_damaged)
 			effect = CONST.DAMAGE.default,  -- boolean: damage_high, damage_medium, damage_low 
 			particle_count = math.floor(math.random()*7)+2,
 			car_fire_effect = {fires = {}, run = true},
+			corpse = r_corpse(entity.prototype.corpses, entity.name), -- used to allow or block the dead entity's ultimate effects
 			--last_position_fire = {},
 			inventory_id = nil,
 			id = global.id,
@@ -358,7 +359,7 @@ function run_tick(effect)
 		
 		car_explosion_death(e)
 		CONST.multiple_effect_explosion(tag)
-		if game.tick % 30 then return nil, e.destroy  end
+		if game.tick % 30 then return nil, e.destroy end
 	end)
 end
 

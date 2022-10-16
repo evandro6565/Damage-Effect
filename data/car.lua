@@ -183,7 +183,7 @@ function car_explosion_death(e)
 		p = { {e.position.x+0.5, e.position.y-0.5}, {e.position.x-0.5, e.position.y+0.5} }
 		e.surface.create_entity{name = e.name.."-explosion", position = p[random(2)]}
 		e.fx.count = e.fx.count + 1
-	elseif e.fx.count >= 2 then
+	elseif e.name:find("tank", 1, true) and e.fx.count >= 2 then
 		e.destroy = true
 	end
 end
