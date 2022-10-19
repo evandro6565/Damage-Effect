@@ -36,10 +36,14 @@ script.on_load(function() init() end)
 --//////// on_event
 --script.on_event(defines.events.on_gui_opened, function() update() end)
 
-script.on_event(defines.events.on_entity_damaged, function(event) 
-	--entity_under_attack(event.entity.unit_number, event.force) 
-	--print("on_entity_damaged name: "..event.entity.name)
-	register_entity(event.entity, true)
+script.on_event(defines.events.on_entity_damaged, function(event)
+	--register_entity(event.entity, true)
+	local e = event.entity
+	local status = health_periods(e.prototype.max_health) -- damage_high, damage_medium, damage_low
+
+	if e.health and e.health <= status.damage_low then
+		register_entity(e)	
+	end
 end)
 script.on_event(defines.events.on_player_setup_blueprint, function(event)
 	if type(event.mapping.get()) == "table" then
@@ -72,7 +76,7 @@ script.on_event(defines.events.on_post_entity_died, function(event) replace_enti
 --script.on_event(defines.events.on_selected_entity_changed, function(event) print("on_selected_entity_changed ") end) 
 
 script.on_event(defines.events.on_tick, function() 
-	update()
+	--update()
 	car.update_fire_position{delay = 3}
 	--if game.tick % 10 == 0 then
 	 	run_tick({
@@ -112,10 +116,7 @@ function register_entity(entity, on_entity_damaged)
 
 	if entity and entity.force.name == "player" and category and not global.entities[entity.unit_number] then
 		local tag = entity.unit_number
-		local ent = nil
-
 		--if tableContains{ table = global.entities, element = entity } then return end
-		
 		if not global.id then global.id = 1 else global.id = global.id + 1 end
 		
 		--smoke_cl(entity)

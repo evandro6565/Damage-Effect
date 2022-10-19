@@ -162,16 +162,22 @@ function r_corpse(corpses, name)
 	local name = split(name, "-damaged")[1] or name
 	local corpse = nil
 
-	corpse = corpse or corpses["1x2-remnants"] and corpses["1x2-remnants"].name
-	corpse = corpse or corpses["small-remnants"] and corpses["small-remnants"].name
-	corpse = corpse or corpses["medium-remnants"] and corpses[name.."-remnants"].name
-	corpse = corpse or corpses["big-remnants"] and corpses["big-remnants"].name
-	corpse = corpses[name.."-remnants"] and corpses[name.."-remnants"].name
+	local function _find(corpses)
+		-- "1x2-remnants", "small-remnants", "small-remnants", "medium-remnants", "big-remnants"
+		if corpses then
+			for _, corpse in pairs(corpses) do
+				return corpse.name
+			end 
+		end
+		return "1x2-remnants"
+	end
+
+	corpse =  _find(corpses)
 
 	return corpse
 end
 
-_update_ = false
+--[[_update_ = false
 function update()
 	if game and not _update_ then
 		for id, p in pairs(game.players) do
@@ -181,19 +187,20 @@ function update()
 			end
 		end
 	end
-end
+end]]
 --- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 --- ghost <<<<<<<<<<<<<<<<<<<<<<
 function replace_entity_ghost(event)
 	local filter, position, surface, new_ghost = nil, nil, nil, nil 
+	local en_time_to_live = settings.global["lifetime-for-the-ghosts-of-the-entities"].value
 	if event.ghost and event.ghost.valid and event.ghost.ghost_name:find "-damaged" then 
 		filter = split(event.ghost.ghost_name, "-damaged")[1]
 		position = event.ghost.position
 		surface = event.ghost.surface
 		event.ghost.destroy()
-		new_ghost = surface.create_entity{name = "entity-ghost", inner_name = filter, position = position, expires = true, force = "player"}
-		new_ghost.time_to_live = 8000
+		new_ghost = surface.create_entity{name = "entity-ghost", inner_name = filter, position = position, expires = en_time_to_live, force = "player"}
+		if en_time_to_live then new_ghost.time_to_live = 8000 end
 	end 
 end
 function replace_entity_ghost_in_blueprint(surface, position, entity_name, g)
@@ -213,8 +220,6 @@ function replace_entity_ghost_in_blueprint(surface, position, entity_name, g)
 		radius = (y * x)
 		
 		entities = surface.find_entities_filtered{position = position, radius = radius}
-		--_delay.blueprint = game.tick + 10
-		print("function")
 		
 		local f = #ghost_entity_area_selection.s_replace_ghost + 1
 		if not ghost_entity_area_selection.s_replace_ghost[f] then
@@ -235,7 +240,6 @@ function replace_entity_ghost_in_blueprint(surface, position, entity_name, g)
 				end
 			end
 		end
-		--replace_ghost_in_blueprint = false
 		ghost_entity_area_selection.replace_ghost = false
 	end
 end

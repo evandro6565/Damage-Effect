@@ -1,7 +1,8 @@
 {
   "name": "damage_effect",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "title": "Damage Effect (DEMO)",
+  "license": "MIT",
   "author": "evandro_6565",
   "description": "Adds damage effects",
   "dependencies": ["!Building_Time_With_Setting", "flib >= 0.11.2"],

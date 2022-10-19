@@ -23,4 +23,18 @@ date: 2022.10.06
 Version: 0.1.6
 date: 2022.10.14
   optimization:
-    - reducing number of entities in the registr
+    - reducing number of entities in the registry
+---------------------------------------------------------------------------------------------------
+Version: 0.1.7
+date: 2022.10.16
+  Chenges:
+    - adding r_corpse function to get entity corpses.
+  Bugfixes:
+    - Fixed code, misuse of code was deleting effect tables for entities before effects completed
+---------------------------------------------------------------------------------------------------
+Version: 0.1.8
+date: 2022.10.17
+  Bugfixes:
+    - Fixed code, "r corpse" function not finding corpses and returning nil value in the "space-exploration" mod
+  Chenges:
+    - adding lifetime setting for entity ghosts

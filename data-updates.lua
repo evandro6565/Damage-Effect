@@ -29,9 +29,5 @@ data.raw["utility-sprites"]["default"].bar_gray_pip.filename = path
 data.raw["utility-sprites"]["default"].shield_bar_pip.shift = shift
 data.raw["utility-sprites"]["default"].shield_bar_pip.filename = path
 
-
-data.raw.recipe["steam-engine-damaged"].enabled = false
-
-
 data.raw.fire["fire-on"].initial_lifetime = 300
 data.raw.fire["fire-on"].burnt_patch_lifetime = 300

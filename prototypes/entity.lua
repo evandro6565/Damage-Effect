@@ -760,10 +760,11 @@ data:extend({entity}) --> accumulator
 
 -------- [ generator ]
 entity = util.table.deepcopy(data.raw["generator"]["steam-turbine"]) --> [ steam-turbine ]
-rep_recipe( entity.name )
 rep_item( entity.name )
 entity.name = entity.name.."-damaged"
 entity.minable.result = entity.name
+
+table.insert(entity.flags, "not-in-made-in")
 
 entity.horizontal_animation.layers[1].hr_version.filename = CONST.mod_name.."/graphics/steam-turbine/hr-steam-turbine-H.png"
 entity.vertical_animation.layers[1].hr_version.filename = CONST.mod_name.."/graphics/steam-turbine/hr-steam-turbine-V.png"
@@ -771,10 +772,11 @@ entity.vertical_animation.layers[1].hr_version.filename = CONST.mod_name.."/grap
 data:extend({entity}) --> steam-turbine
 
 entity = util.table.deepcopy(data.raw["generator"]["steam-engine"]) --> [ steam-engine ]
-rep_recipe( entity.name )
 rep_item( entity.name )
 entity.name = entity.name.."-damaged"
 entity.minable.result = entity.name
+
+table.insert(entity.flags, "not-in-made-in")
 
 entity.horizontal_animation.layers[1].hr_version.filename = CONST.mod_name.."/graphics/steam-engine/hr-steam-engine-H.png"
 entity.vertical_animation.layers[1].hr_version.filename = CONST.mod_name.."/graphics/steam-engine/hr-steam-engine-V.png"
