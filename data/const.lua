@@ -235,7 +235,7 @@ CONST.multiple_effect_explosion = function(tag)
 		local st_fire = {valid = true}
 		--p = e.entity.valid and e.entity.position or e.position
 
-		if e.fx.rtm[1] and active and remmants--[[and not e.fx.on_player_mined_entity and e.name:find "-damaged"]] then
+		if e.fx.rtm and e.fx.rtm[1] and active and remmants--[[and not e.fx.on_player_mined_entity and e.name:find "-damaged"]] then
 			if ( e.fx.count > 0 and ( game.tick % e.fx.rtm[random(5)] == 0 ) ) or e.fx.run then --- <<
 				e.surface.create_entity{name = e.fx.dying_explosion , position = e.position}
 				if not e.entity.valid then e.surface.create_entity{name = "fire-on", position = e.position} end
